@@ -3,7 +3,7 @@
 echo "hello";
 
 // connexion
-$m = new MongoClient();
+$m = new MongoClient("mongodb://heroku_pwk905m9:6pqscbe6c39kogeq3861rilvji@ds011314.mlab.com:11314/heroku_pwk905m9");
 
 // sélection d'une base de données
 $db = $m->comedy;
