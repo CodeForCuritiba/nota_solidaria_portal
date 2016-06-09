@@ -17,6 +17,8 @@
  4. It should be running!!
 
  ### Deploy
+ 
+ Make sure you have access to heroku notasolidaria project. If not, create an account and provide your email to a project member that can add you in the developper's list.
 
  1. Add heroku as a git remote server: `git remote add heroku https://git.heroku.com/notasolidaria.git`
  2. `git push heroku master`
