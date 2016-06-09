@@ -1,15 +1,10 @@
 <?php
 
 // connexion
-switch (getenv('ENVIRONMENT')) {
-	case 'production':
-		$m = new MongoClient(getenv('MONGODB_URI'));
-		break;
-	
-	default: // Mongo runs on localhost
-		$m = new MongoClient();
-		break;
-}
+if (getenv('MONGODB_URI'))
+	$m = new MongoClient(getenv('MONGODB_URI'));
+else
+	$m = new MongoClient();
 
 // database select
 $db = $m->heroku_pwk905m9;
