@@ -1,13 +1,18 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
-header('Access-Control-Allow-Credentials: false');
-header('Content-Type: application/json');
+//http://stackoverflow.com/questions/18382740/cors-not-working-php
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+  header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+  header('Access-Control-Allow-Credentials: true');
+  header('Access-Control-Max-Age: 86400');    // cache for 1 day
+}
  
 // get the HTTP method, path and body of the request
 $method = $_SERVER['REQUEST_METHOD'];
-$request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
+
+if (isset($_SERVER['PATH_INFO'])) $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
+else $request = array('users');
+
 $input = json_decode(file_get_contents('php://input'),true);
 
 $response = array('status' => '200');
