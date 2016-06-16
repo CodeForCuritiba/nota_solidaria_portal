@@ -17,6 +17,13 @@
  4. It should be running!!
 
 ### Deploy
+
+#### On Heroku
+
+ - `heroku create myapp`
+ - `git push heroku master`
+
+#### On production
  
  Make sure you have access to heroku notasolidaria project. If not, create an account and provide your email to a project member that can add you in the developper's list.
 
