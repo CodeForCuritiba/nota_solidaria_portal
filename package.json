@@ -1,7 +1,16 @@
 {
       "name": "nota_solidaria_server",
+      "description": "Back Office and API for Nota Solidaria App",
       "main": "server.js",
+	  "version": "0.1.0",
+  	  "engines": {
+    	"node": "4.4.3"
+  	  },
+	  "scripts": {
+    	"postinstall": "bower install"
+  	  },
       "dependencies": {
+        "bower" : "~1.7.9",
         "express" : "~4.5.1",
         "mongoose" : "~3.8.23",
         "body-parser" : "~1.4.2",
