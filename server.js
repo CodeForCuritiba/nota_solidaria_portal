@@ -8,9 +8,10 @@ var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 
 // configuration ===========================================
-    
+var configpath = './config/' + (process.env.ENVIRONMENT ? process.env.ENVIRONMENT : 'localdev');
+
 // config files
-var db = require('./config/db');
+var db = require(configpath + '/db');
 
 // set our port
 var port = process.env.PORT || 8080; 
