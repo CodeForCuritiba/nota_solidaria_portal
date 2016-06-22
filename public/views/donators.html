@@ -1,0 +1,28 @@
+<!-- public/views/user.html -->
+
+<div class="jumbotron text-center">
+    <h1>Os seus doadores</h1>
+
+    <p ng-show="tagline" ng-bind-html="renderHtml(tagline)"></p>
+</div>
+
+<div class="content">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Fone</th>
+				<th>Email</th>
+				<th>Cupons</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="doador in doadores">
+				<td>{{ doador.name }}</td>
+				<td>{{ doador.phone }}</td>
+				<td>{{ doador.email }}</td>
+				<td>{{ nbNotas(doador) }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

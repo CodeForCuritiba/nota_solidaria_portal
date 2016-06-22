@@ -1,0 +1,30 @@
+<!-- public/views/user.html -->
+
+<div class="jumbotron text-center">
+    <h1>As suas doações</h1>
+
+    <p ng-show="tagline" ng-bind-html="renderHtml(tagline)"></p>
+</div>
+
+<div class="content">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Data</th>
+				<th>NFe</th>
+				<th>Emissão</th>
+				<th>Emissor</th>
+				<th>Doador</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="nota in notas | orderBy : donated_at">
+				<td>{{ printDate(nota.donated_at) }}</td>
+				<td>{{ nota.print_nfe }}</td>
+				<td>{{ nota.emission_month | numberFixedLen:2 }}/{{ nota.emission_year }}</td>
+				<td>{{ nota.print_cnpj }}</td>
+				<td>{{ nota.doador.name }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
