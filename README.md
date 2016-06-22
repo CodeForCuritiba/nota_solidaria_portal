@@ -6,7 +6,9 @@
 
  - [Heroku Toolbelt](https://devcenter.heroku.com/articles/heroku-command#installing-the-heroku-cli)
  - [MongoDB](https://docs.mongodb.com/manual/installation/)
- - node & npm
+ - node 
+ - npm 
+ - bower
 
 ### Local install
 
