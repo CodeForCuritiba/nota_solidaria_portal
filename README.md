@@ -13,9 +13,10 @@
 ### Local install
 
  1. `git clone https://github.com/CodeForCuritiba/nota_solidaria_portal.git`
- 2. Start MongoDB server: `mongod`
- 3. `node server.js`
- 4. It should be running!!
+ 2. `npm install`
+ 3. Start MongoDB server: `mongod`
+ 4. `node server.js`
+ 5. It should be running!!
 
 ### Deploy
 
