@@ -14,7 +14,6 @@ module.exports = function(app) {
     var router = express.Router(); 
 
     var saveDoador = function(doador,body,res) {
-
             var creation = (doador == null);
             if (creation) doador = new Doador();      // create a new instance of the Doador model
             doador.name = body.name;
@@ -23,19 +22,16 @@ module.exports = function(app) {
             if (creation) doador.created_at = new Date().getTime();
             doador.updated_at = new Date().getTime();
             if (body.notas) {
-                console.log(body.notas);
                 doador.notas = [];
                 for (key in body.notas) {
                     doador.notas.push(body.notas[key]);
                 }
             }
 
-console.log(doador);
-
             doador.save(function(err,obj) {
                 if (err)
                     res.send(err);
-console.log(obj);
+                console.log(obj);
                 if (creation)
                     res.json({ message: 'Doador created!', _id: obj._id });
                 else
@@ -44,6 +40,13 @@ console.log(obj);
             });
 
     }
+
+    router.use(function (req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Methods", "GET,PUT,POST");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
+    });
 
     router.route('/doadores')
         .get(function(req, res) {
@@ -62,7 +65,7 @@ console.log(obj);
         })
 
         .post(function(req, res) {
-
+            console.log('Creating new doador');
             saveDoador(null,req.body,res);
 
         });
@@ -78,7 +81,7 @@ console.log(obj);
         })
 
         .put(function(req, res) {
-
+            console.log('Updating doador ' + req.params.doador_id);
             // use our doador model to find the doador we want
             Doador.findById(req.params.doador_id, function(err, doador) {
 
