@@ -29,7 +29,21 @@ angular.module('DoadorCtrl', []).controller('DoadorController', ['$scope', 'Doad
     	month = parseInt(date.getMonth() + 1, 10);
     	month = (month < 10) ? "0" + month : "" + month;
 
-    	return date.getDate() + "/" + month + " ás " + date.getHours() + "h" + date.getMinutes();
+        var numberFixedLen = function(n, len) {
+            var num = parseInt(n, 10);
+            len = parseInt(len, 10);
+            if (isNaN(num) || isNaN(len)) {
+                return n;
+            }
+            num = ''+num;
+            while (num.length < len) {
+                num = '0'+num;
+            }
+            return num;
+        }
+
+    	return numberFixedLen(date.getDate(),2) + "/" + numberFixedLen(date.getMonth() + 1,2) + " ás " + 
+                numberFixedLen(date.getHours(),2) + "h" + numberFixedLen(date.getMinutes(),2);
     }
 
 	$scope.renderHtml = function(html_code)
