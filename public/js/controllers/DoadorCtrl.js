@@ -1,7 +1,6 @@
 // public/js/controllers/DoadorCtrl.js
 angular.module('DoadorCtrl', []).controller('DoadorController', ['$scope', 'Doador', '$sce', function($scope,Doador,$sce) {
 
-
     $scope.tagline = 'É fácil amar os que estão longe.<br/>Mas nem sempre é fácil amar os que vivem ao nosso lado.';
 
     Doador.get().then(function(response) {

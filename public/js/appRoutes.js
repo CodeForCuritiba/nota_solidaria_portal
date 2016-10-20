@@ -19,6 +19,12 @@
         .when('/donations', {
             templateUrl: 'views/donations.html',
             controller: 'DoadorController'
+        })
+
+        // donations list page
+        .when('/sync', {
+            templateUrl: 'views/sync.html',
+            controller: 'SyncController'
         });
 
     $locationProvider.html5Mode(true);
