@@ -41,6 +41,16 @@ module.exports = function(app) {
 
     }
 
+    var setNotaExportado = function(doador_id, nota_index, value, res) {
+        Doador.update({ _id: doador_id },
+            { $set: { ["notas." + nota_index +".exportado"] : value }}, function (err, obj) {
+                if(err) 
+                    res.send(err);
+
+                res.json({ message: 'Nota exportada!' });
+            });
+    }
+
     router.use(function (req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Methods", "GET,PUT,POST");
@@ -91,6 +101,26 @@ module.exports = function(app) {
                 saveDoador(doador,req.body,res);
 
             });
+        });
+
+    router.route('/doadores/:doador_id/:nota_index')
+        .get(function(req, res) {
+            Doador.findById(req.params.doador_id, function(err, doador) {
+                if (err)
+                    res.send(err);
+
+                res.json(doador);
+            });
+        })
+
+        .put(function(req, res) {
+            Doador.findById(req.params.doador_id, function(err, doador) {
+                if (err)
+                    res.send(err);
+
+                var value = doador.notas[req.params.nota_index].exportado ? 0 : 1;
+                setNotaExportado(doador._id, req.params.nota_index, value, res);
+            })
         });
 
     app.use('/api', router);
