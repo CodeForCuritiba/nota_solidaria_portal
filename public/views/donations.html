@@ -1,5 +1,4 @@
 <!-- public/views/user.html -->
-
 <div class="jumbotron text-center">
     <h1>As suas doações</h1>
 
@@ -15,15 +14,33 @@
 				<th>Emissão</th>
 				<th>Emissor</th>
 				<th>Doador</th>
+				<th>Exportada</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="nota in notas | orderBy : donated_at">
+			<tr ng-repeat="nota in notas | orderBy : donated_at" ng-style="setColorExportado(nota)">
 				<td>{{ printDate(nota.donated_at) }}</td>
-				<td>{{ nota.print_nfe }}</td>
+				<td> <span class="nota{{ $index }}-nfe"> {{ nota.print_nfe }} </span> 
+					<a href="" ngclipboard data-clipboard-target=".nota{{ $index }}-nfe">
+					    <i class="material-icons">edit_location</i>
+					</a>
+				</td>
 				<td>{{ nota.emission_month | numberFixedLen:2 }}/{{ nota.emission_year }}</td>
 				<td>{{ nota.print_cnpj }}</td>
 				<td>{{ nota.doador.name }}</td>
+				<td>
+					<div ng-if="nota.exportado == true">
+						<a href="" ng-click="setNotaExportado(nota.doador._id, $index)"> 
+							<i class="material-icons">check_box</i>
+						</a> 
+					</div>
+					<div ng-if="nota.exportado == false">
+						<a href="" ng-click="setNotaExportado(nota.doador._id, $index)"> 
+							<i class="material-icons">check_box_outline_blank</i>
+						</a>
+					</div>			
+				</td>
+			</tr>
 			</tr>
 		</tbody>
 	</table>

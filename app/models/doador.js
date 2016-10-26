@@ -18,6 +18,7 @@ module.exports = mongoose.model('Doador', new Schema({
 	    	emission_year : Number,
 	    	print_nfe : String,
 	    	print_cnpj : String,
+	    	exportado: {type: Boolean, default: false}
 	    } ]
 	}, { collection: 'doadores' })
 );

@@ -1,5 +1,5 @@
 // public/js/controllers/DoadorCtrl.js
-angular.module('DoadorCtrl', []).controller('DoadorController', ['$scope', 'Doador', '$sce', function($scope,Doador,$sce) {
+angular.module('DoadorCtrl', ['ngclipboard']).controller('DoadorController', ['$scope', 'Doador', '$sce', function($scope,Doador,$sce) {
 
 
     $scope.tagline = 'É fácil amar os que estão longe.<br/>Mas nem sempre é fácil amar os que vivem ao nosso lado.';
@@ -44,6 +44,17 @@ angular.module('DoadorCtrl', []).controller('DoadorController', ['$scope', 'Doad
 
     	return numberFixedLen(date.getDate(),2) + "/" + numberFixedLen(date.getMonth() + 1,2) + " ás " + 
                 numberFixedLen(date.getHours(),2) + "h" + numberFixedLen(date.getMinutes(),2);
+    }
+
+    $scope.setNotaExportado = function(doador_id, nota_index) {
+        $scope.notas[nota_index].exportado = !$scope.notas[nota_index].exportado;
+        return Doador.setNotaExportado(doador_id, nota_index);
+    }
+
+    $scope.setColorExportado = function(nota) {
+        if (nota.exportado) {
+            return { color: "gray" }
+        }
     }
 
 	$scope.renderHtml = function(html_code)
