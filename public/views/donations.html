@@ -6,7 +6,35 @@
 </div>
 
 <div class="content">
-	<table class="table table-striped">
+
+	<div class="search pull-right">
+		<form ng-submit="findNotasByDate()" class="form-inline">
+			<div class="form-group">
+				<label for="date1"> de: </label>
+				<div class='input-group date' id='date1-calendar'>
+					<input type='text' class="form-control input-sm" id="date1" ng-model="$parent.date1" />
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="date2"> até: </label>
+				<div class='input-group date' id='date2-calendar'>
+					<input type='text' class="form-control input-sm" id="date2" ng-model="date2" />
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-default">Pesquisar</button>
+		</form>
+	</div>
+
+
+	<table class="table table-striped donations-table">
 		<thead>
 			<tr>
 				<th>Data</th>
@@ -22,7 +50,7 @@
 				<td>{{ printDate(nota.donated_at) }}</td>
 				<td> <span class="nota{{ $index }}-nfe"> {{ nota.print_nfe }} </span> 
 					<a href="" ngclipboard data-clipboard-target=".nota{{ $index }}-nfe">
-					    <i class="material-icons">edit_location</i>
+					    <i class="clipboard-icon material-icons">content_copy</i>
 					</a>
 				</td>
 				<td>{{ nota.emission_month | numberFixedLen:2 }}/{{ nota.emission_year }}</td>
@@ -31,16 +59,15 @@
 				<td>
 					<div ng-if="nota.exportado == true">
 						<a href="" ng-click="setNotaExportado(nota.doador._id, $index)"> 
-							<i class="material-icons">check_box</i>
+							<i class="exportado-icon material-icons">check_box</i>
 						</a> 
 					</div>
 					<div ng-if="nota.exportado == false">
 						<a href="" ng-click="setNotaExportado(nota.doador._id, $index)"> 
-							<i class="material-icons">check_box_outline_blank</i>
+							<i class="exportado-icon material-icons">check_box_outline_blank</i>
 						</a>
 					</div>			
 				</td>
-			</tr>
 			</tr>
 		</tbody>
 	</table>
